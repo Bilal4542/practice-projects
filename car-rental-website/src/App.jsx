@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import React  from 'react'
 import Navbar from './Components/Navbar/Navbar'
+import Hero from './Components/Hero/Hero'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 
 const App = () => {
   // Dark Mood feature
@@ -17,9 +21,21 @@ const App = () => {
       localStorage.setItem('theme','light')
     }
   },[theme])
+
+  // AOS Initialization *****Animation***
+  React.useEffect(() => {
+    AOS.init({
+      offset: 100,
+      duration: 800,
+      easing: 'ease-in-sine',
+      delay: 100
+    });
+    AOS.refresh();
+  }, [])
   return (
     <div>
       <Navbar theme={theme} setTheme={setTheme}/>
+      <Hero theme={theme}/>
     </div>
   )
 }
