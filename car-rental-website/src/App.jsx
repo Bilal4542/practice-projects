@@ -1,15 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import React  from 'react'
+import Navbar from './Components/Navbar/Navbar'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  // Dark Mood feature
+  const [theme, setTheme] = React.useState(
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
+  )
+  const element = document.documentElement;
+  useEffect(() => {
+    if(theme === 'dark'){
+      element.classList.add('dark');
+      localStorage.setItem('theme','dark');
+    }else{
+      element.classList.remove('dark');
+      localStorage.setItem('theme','light')
+    }
+  },[theme])
   return (
-    <>
-      <h1 className='text-4xl text-red-400 font-bold'>Hello World</h1>
-    </>
+    <div>
+      <Navbar theme={theme} setTheme={setTheme}/>
+    </div>
   )
 }
 
