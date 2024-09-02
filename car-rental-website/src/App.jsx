@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar/Navbar'
 import Hero from './Components/Hero/Hero'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import About from './Components/About/About'
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
     <div>
       <Navbar theme={theme} setTheme={setTheme}/>
       <Hero theme={theme}/>
+      <About/>
     </div>
   )
 }
