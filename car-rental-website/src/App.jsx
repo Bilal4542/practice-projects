@@ -7,6 +7,8 @@ import 'aos/dist/aos.css'
 import About from './Components/About/About'
 import Services from './Components/Services/Services'
 import CarList from './Components/CarList/CarList'
+import Testimonials from './Components/Testimonials/Testimonials'
+import AppStoreBanner from './Components/AppStoreBanner/AppStoreBanner'
 
 
 const App = () => {
@@ -36,12 +38,14 @@ const App = () => {
     AOS.refresh();
   }, [])
   return (
-    <div>
+    <div className='bg-white dark:bg-black dark:text-white'>
       <Navbar theme={theme} setTheme={setTheme}/>
       <Hero theme={theme}/>
       <About/>
       <Services/>
       <CarList/>
+      <Testimonials/>
+      <AppStoreBanner/>
     </div>
   )
 }
