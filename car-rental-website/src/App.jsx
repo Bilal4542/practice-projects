@@ -7,6 +7,10 @@ import 'aos/dist/aos.css'
 import About from './Components/About/About'
 import Services from './Components/Services/Services'
 import CarList from './Components/CarList/CarList'
+import Testimonials from './Components/Testimonials/Testimonials'
+import AppStoreBanner from './Components/AppStoreBanner/AppStoreBanner'
+import Contact from './Components/Contact/Contact'
+import Footer from './Components/Footer/Footer'
 
 
 const App = () => {
@@ -42,6 +46,12 @@ const App = () => {
       <About/>
       <Services/>
       <CarList/>
+      <Testimonials/>
+      <div className=''>
+      <AppStoreBanner/>
+      <Contact/>
+      <Footer/>
+      </div>
     </div>
   )
 }
