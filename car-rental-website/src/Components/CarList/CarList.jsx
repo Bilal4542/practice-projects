@@ -25,7 +25,7 @@ const carListData = [
 
 const CarList = () => {
   return (
-    <div className='pb-24 pt-12 bg-white dark:bg-dark dark:text-white'>
+    <div className='pb-24 pt-12 bg-slate-100 dark:bg-gray-950 dark:text-white'>
       <div className='container'>
         {/* heading */}
         <h1 data-aos='fade-up' className='text-3xl sm:text-4xl font-serif font-bold mb-3'>Available Cars</h1>

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiSolidMoon, BiSolidSun } from "react-icons/bi";
+import ResponsiveMenu from '../ResponsiveMenu/ResponsiveMenu';
+import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
 
-const navLinks = [
+export const navLinks = [
     {
         id: '1',
         name: 'Home',
@@ -25,9 +27,13 @@ const navLinks = [
 ]
 
 const Navbar = ({theme,setTheme}) => {
+    const [showMenu, setShowMenu] = useState(false);
+    const toggleMenu = () => {
+        setShowMenu(!showMenu)
+    }
   return (
-    <nav className='shadow-md bg-white dark:bg-dark dark:text-white duration-300'>
-      <div className="container">
+    <nav className='shadow-md bg-white dark:bg-dark dark:text-white duration-300 relative z-40'>
+      <div className="container py-3 md:py-0">
         <div className="flex justify-between items-center">
             <div>
                 <h1 className='text-3xl font-bold font-serif'>Car Rental</h1>
@@ -41,13 +47,21 @@ const Navbar = ({theme,setTheme}) => {
                     )}
                 </ul>
             </div>
+            <div className='flex items-center gap-3'>
+            {/* dark mood icons */}
             <div>
                 {
                     theme === 'dark' ? (<BiSolidSun onClick={() => setTheme('light')} className='text-2xl cursor-pointer'/>) : (<BiSolidMoon onClick={() => setTheme('dark')} className='text-2xl cursor-pointer'/>)
                 }
             </div>
+            {/* hamburger icons */}
+            <div className='md:hidden'>
+                {showMenu?(<HiMenuAlt1 onClick={toggleMenu} size={30} className='cursor-pointer transition-all'/>):(<HiMenuAlt3 onClick={toggleMenu} size={30} className='cursor-pointer transition-all'/>)}
+                </div>
+                </div>
         </div>
       </div>
+      <ResponsiveMenu showMenu={showMenu} />
     </nav>
   )
 }

@@ -14,6 +14,7 @@ const bannerImg = {
 
 const AppStoreBanner = () => {
   return (
+    <div className='bg-white dark:bg-black dark:text-white'>
     <div className='container pb-14'>
       <div className='text-black py-10 sm:min-h-[400px] sm:grid sm:place-items-center rounded-xl' style={bannerImg}>
         <div>
@@ -31,6 +32,7 @@ const AppStoreBanner = () => {
             </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }
