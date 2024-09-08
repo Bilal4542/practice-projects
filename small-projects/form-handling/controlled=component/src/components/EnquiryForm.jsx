@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const EnquiryForm = () => {
     const [formData,setFormData] = useState(
         {
@@ -28,18 +29,42 @@ const EnquiryForm = () => {
             userphone:formData.userphone,
             usermessage:formData.usermessage
         } 
-        const oldUserData = [...userData,currentUserFormData]
-        setUserData(oldUserData)
+
+        const checkFilterUser = userData.filter((v)=>v.useremail==formData.useremail || v.userphone==formData.userphone)
+        if(checkFilterUser.length==1){
+            toast.error('Email or Phone already Exists....')
+        }else{
+
+            const oldUserData = [...userData,currentUserFormData]
+            setUserData(oldUserData)
+            setFormData(
+                {
+                    username:'',
+                    useremail:'',
+                    userphone:'',
+                    usermessage:'',
+                    index:'',
+                }
+            )
+            console.log(oldUserData)
+        }
         event.preventDefault();
+        toast.info('Insert Data Successfully')
+    }
+
+    const handleDelete = (indexNumber) => {
+        const filterDataAfterDelete = userData.filter((v,i)=> i!=indexNumber)
+        setUserData(filterDataAfterDelete)
+        toast.success('Row Deleted Successfully...')
     }
 
   return (
     <div>
       <div className="container px-4 mx-auto">
+        <ToastContainer/>
         <div className="row flex justify-start space-x-6">
             <div className="lg:w-[35%]">
                 <h1 className='text-3xl font-bold my-4'>Enquiry Form</h1>
-                {userData.length}
                 <form onSubmit={handleSubmit}>
                     <div className="flex flex-col my-3">
                         <label className='my-2 font-semibold'>Username</label>
@@ -75,6 +100,27 @@ const EnquiryForm = () => {
                             <th scope="col" className="p-3">Action</th>
                         </tr>
                     </thead>
+                    <tbody>
+            {userData.length>=1 
+            ? 
+            userData.map((item, i) => (
+                <tr key={i} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <td className="p-3">{i+1}</td>
+                <td className="p-3">{item.username}</td>
+                <td className="p-3">{item.useremail}</td>
+                <td className="p-3">{item.userphone}</td>
+                <td className="p-3">{item.usermessage}</td>
+                <td className="p-3 flex">
+                    <button className='bg-black/10 mx-1 p-2 rounded-lg' onClick={()=>handleEdit(i)}>Edit</button>
+                    <button className='bg-black/10 mx-1 p-2 rounded-lg' onClick={()=>handleDelete(i)}>Delete</button>
+                </td>
+            </tr>   
+            ))
+             
+             : 
+            <tr><td>No Data Found</td></tr>}
+                   
+        </tbody>
                 </table>
             </div>
         </div>
