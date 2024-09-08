@@ -62,6 +62,21 @@ const EnquiryForm = () => {
             </div>
                 </form>
             </div>
+            {/* user data table */}
+            <div className="relative lg:w-[65%] mt-24 sm:rounded-lg">
+                <table className='text-left rtl:text-right text-gray-600 dark:text-gray-400'>
+                    <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+                        <tr>
+                            <th scope="col" className="p-3">Id</th>
+                            <th scope="col" className="p-3">Name</th>
+                            <th scope="col" className="p-3">Email</th>
+                            <th scope="col" className="p-3">Phone</th>
+                            <th scope="col" className="p-3">Message</th>
+                            <th scope="col" className="p-3">Action</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
       </div>
     </div>
