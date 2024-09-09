@@ -30,6 +30,7 @@ const EnquiryForm = () => {
             usermessage:formData.usermessage
         } 
 
+        if(formData.index===''){
         const checkFilterUser = userData.filter((v)=>v.useremail==formData.useremail || v.userphone==formData.userphone)
         if(checkFilterUser.length==1){
             toast.error('Email or Phone already Exists....')
@@ -48,14 +49,43 @@ const EnquiryForm = () => {
             )
             console.log(oldUserData)
         }
+    }else{
+        const editIndex = formData.index
+        const oldData = userData
+        const checkFilterUser = userData.filter((v,i)=>(v.useremail==formData.useremail || v.userphone==formData.userphone) && i!=editIndex)
+        if(checkFilterUser.length==0){
+        oldData[editIndex]['username']=formData.username
+        oldData[editIndex]['useremail']=formData.useremail
+        oldData[editIndex]['userphone']=formData.userphone
+        oldData[editIndex]['usermessage']=formData.usermessage
+        setUserData(oldData)
+        setFormData(
+            {
+                username:'',
+                useremail:'',
+                userphone:'',
+                usermessage:'',
+                index:'',
+            }
+        )
+    }else{
+        toast.error('Email or Phone already Exists...')
+    }
+    }
         event.preventDefault();
-        toast.info('Insert Data Successfully')
     }
 
     const handleDelete = (indexNumber) => {
         const filterDataAfterDelete = userData.filter((v,i)=> i!=indexNumber)
         setUserData(filterDataAfterDelete)
         toast.success('Row Deleted Successfully...')
+    }
+    const handleEdit = (indexNumber) => {
+        const editData = userData.filter((v,i)=>i==indexNumber)[0]
+        console.log(editData)
+        editData['index'] = indexNumber
+        console.log(editData)
+        setFormData(editData)
     }
 
   return (
