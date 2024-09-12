@@ -30,7 +30,7 @@ const CarList = () => {
         {/* heading */}
         <h1 data-aos='fade-up' className='text-3xl sm:text-4xl font-serif font-bold mb-3'>Available Cars</h1>
         <p data-aos='fade-up' className='text-sm pb-10'>Lorem ipsum dolor sit amet sit amet Lorem ipsum dolor sit amet sit amet.</p>
-        {/* car listing cards */}
+        {/* car listing cards */} /* ********** */
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16'>
             {
                 carListData.map((data) => (
