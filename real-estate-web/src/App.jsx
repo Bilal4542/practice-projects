@@ -7,7 +7,7 @@ import PopularAreas from './sections/PopularAreas'
 import Properties from './sections/Properties'
 import Services from './sections/Services'
 import Client from './sections/Client'
-import Contact from './sections/Client'
+import Contact from './sections/Contact'
 import Footer from './components/Footer'
 
 const App = () => {
