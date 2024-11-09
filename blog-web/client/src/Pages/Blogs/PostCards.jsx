@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { fetchBlogs } from '../../redux/features/blogs/blogsSlice';
 import Card from './Card';
@@ -11,14 +11,30 @@ const PostCards = () => {
     dispatch(fetchBlogs())
   },[dispatch])
   console.log(blogs)
+
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 5;
+  const startIndex = ((currentPage - 1) * blogsPerPage);
+  const endIndex = currentPage * blogsPerPage;
+  const paginatedBlogs = blogs.slice(startIndex, endIndex);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage)
+  }
   return (
     <div className=''>
       <div className="w-full">
           {
-            !isError && !isLoading && blogs?.length > 0 ? (<div>
+            !isError && !isLoading && paginatedBlogs?.length > 0 ? (<div>
               {
-                blogs.map((blog, index) => ( <Card blog={blog} key={index} /> ))
+                paginatedBlogs.map((blog, index) => ( <Card blog={blog} key={index} /> ))
               }
+              <div className='space-x-3'>
+                <button className='px-2 text-white bg-red-500 rounded' onClick={()=>handlePageChange(currentPage-1)} disabled={currentPage===1}>Previous</button>
+                <span>{currentPage}</span>
+                <button className='px-2 text-white bg-indigo-500 rounded' onClick={()=>handlePageChange(currentPage+1)}>Next</button>
+              </div>
             </div>) : (<div>No Blogs Found</div>)
           }
 

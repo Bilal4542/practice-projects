@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Card = ({blog}) => {
     // console.log(blog)
     const {id,title,image,category,author,authorPic,published_date,reading_time,content,tags} = blog;
   return (
     <div>
-      <a className="block rounded w-full lg:flex mb-10"
+      <Link to={`/blogs/${id}`} className="block rounded w-full lg:flex mb-10"
             href="#"
           >
             <div 
@@ -34,7 +35,7 @@ const Card = ({blog}) => {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
     </div>
   )
 }
