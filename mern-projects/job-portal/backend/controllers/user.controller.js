@@ -62,7 +62,7 @@ export const login = async (req,res)=>{
             })
         };
         // check role is correct or not
-        if(role !== user.role){
+        if(role != user.role){
             return res.status(400).json({
                 message: "Account doesn't exist with current role.",
                 success: false,
@@ -105,17 +105,12 @@ export const updateProfile = async (req,res)=>{
     try {
         const {fullname,email,phoneNumber,bio,skills} = req.body;
         const file = req.file;
-        if(!fullname || !email || !phoneNumber || !bio || !skills){
-            return res.status(400).json({
-                message:"Something is Missing",
-                success:false
-            });
-
-        };
 
         //cloudinary idher ayegaa...
-
-        const skillsArray = skills.split(",");
+        let skillsArray;
+        if(skillsArray){
+            skillsArray = skills.split(",");
+        }
         const userId = req.id //middleware authentication
         let user = await User.findById(userId);
         if(!user){
@@ -125,11 +120,11 @@ export const updateProfile = async (req,res)=>{
             });
         };
         // updating data
-        user.fullname = fullname,
-        user.email = email,
-        user.phoneNumber = phoneNumber,
-        user.profile.bio = bio,
-        user.profile.skills = skillsArray,
+        if(fullname) user.fullname = fullname;
+        if(email) user.email = email;
+        if(phoneNumber) user.phoneNumber = phoneNumber;   
+        if(bio) user.profile.bio = bio
+        if(skills) user.profile.skills = skillsArray
 
 
         // resume comes lates here ...
