@@ -1,6 +1,6 @@
 import {Company} from '../modals/company.modal.js'
 
-export const registerCompany = async (req,ees) => {
+export const registerCompany = async (req,res) => {
     try {
         const {companyName} = req.body;
         if(!companyName){
@@ -41,6 +41,10 @@ export const getCompany =  async (req,res)=>{
                 success:false
             })
         }
+        res.status(201).json({
+            companies,
+            success:true
+        })
     } catch (error) {
         console.log(error)
     }
