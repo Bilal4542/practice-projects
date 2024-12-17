@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BsStars } from "react-icons/bs";
+import { AppContext } from '../context/AppContext';
+import {useNavigate} from 'react-router-dom'
 const Header = () => {
+
+  const {user, setShowLogin} = useContext(AppContext)
+
+  const navigate = useNavigate()
+
+  const onClickHandler = () => {
+      if(user){
+        navigate('/result')
+      }else{
+        setShowLogin(true)
+      }
+  }
 
     const images = [
         "https://cdn.pixabay.com/photo/2024/03/04/14/17/ai-generated-8612487_1280.jpg",
@@ -19,7 +33,7 @@ const Header = () => {
       </div>
       <h1 className='text-4xl sm:text-7xl max-w-[300px] sm:max-w-[590px] mx-auto mt-10 text-center'>Turn text to <span className='text-blue-600'>image,</span> in Seconds</h1>
       <p className='mx-auto text-center max-w-xl mt-5'>Unleash your creativity with AI. Turn your imagination into visual arts in seconds - just type and watch the magic happen.</p>
-      <button className='sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full'>
+      <button onClick={onClickHandler} className='sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full hover:scale-105 transition-all duration-300'>
         Generate Image
         <BsStars />
       </button>
