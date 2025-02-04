@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Timer from './Timer'
 
 function App() {
   const [task, setTask] = useState('')
@@ -31,6 +32,7 @@ function App() {
           </li>
         ))}
       </ul>
+      <Timer/>
     </>
   )
 }
