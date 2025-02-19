@@ -1,0 +1,16 @@
+div{
+  width: 80%;
+  margin: auto;
+}
+input{
+  width: 50%;
+  padding: 10px;
+  margin: 10px;
+}
+button{
+  padding: 10px;
+  margin: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+}
